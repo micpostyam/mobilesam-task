@@ -1,6 +1,55 @@
-# Internship Take Home Assignment - Software Engineer
+# API de segmentation d'images
 
-This assignment is designed to assess your software engineering skills in the context of integrating and deploying a machine learning model. Though the task involves a machine learning model, the primary focus is on developing and deploying the software application.
+Cette API permet de segmenter des images en utilisant un modèle de segmentation d'images.
+
+## Installation et exécution avec Docker
+
+1. **Clonez ce dépôt**
+
+```bash
+   git clone https://github.com/micpostyam/mobilesam-task
+```
+2. **Accédez au répertoire du projet**
+
+```bash
+    cd mobilesam-task
+```
+3. **Construisez l'image Docker**
+
+```bash
+    docker build -t segmentation-api .
+```    
+
+4. **Lancez le conteneur Docker**
+
+```bash
+    docker run -d -p 8000:8000 segmentation-api
+```
+
+## Utilisation
+
+Envoyez une requête POST à l'URL http://localhost:8000/segment-image/ avec un fichier image en tant que corps de la requête pour segmenter l'image. Par exemple, vous pouvez utiliser l'outil cURL pour envoyer une requête :
+
+```bash
+    curl -X POST -F "file=@/chemin/vers/votre/image.jpg" http://localhost:8000/segment-image/ --output segmented_image.png
+```
+Cela téléchargera l'image segmentée enregistrée sous le nom segmented_image.png.
+
+## Gestion des erreurs
+
+-- Si vous rencontrez des erreurs lors de l'utilisation de l'API, assurez-vous que le fichier que vous envoyez est bien une image.
+-- Si une erreur survient côté serveur, vous recevrez une réponse HTTP avec un code d'erreur 500 et un message détaillé sur l'erreur.
+
+## Mise en cache
+
+-- Les résultats de segmentation sont mis en cache pour améliorer les performances. Les résultats sont conservés en mémoire pendant une heure avant d'être purgés du cache.
+
+
+
+
+
+
+
 
 ## How to Run the Code
 
